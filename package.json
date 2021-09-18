@@ -1,6 +1,6 @@
 {
-  "name": "auto-collapse-unopened-explorer",
-  "displayName": "Auto-Collapse Unopened Explorer",
+  "name": "collapse-unopened-explorer",
+  "displayName": "Collapse Unopened Explorer Tabs",
   "description": "",
   "version": "1.0.0",
   "engines": {
@@ -9,13 +9,19 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "*"
-  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "collapse-unopened-explorer.collapseUnopened",
+        "title": "Collapse Unopened Explorer Tabs"
+      }
+    ]
+  },
+  "activationEvents": ["onCommand:collapse-unopened-explorer.collapseUnopened"],
   "main": "./extension.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/flightmansam/vscode-auto-collapse-unopened-explorer"
+    "url": "https://github.com/flightmansam/collapse-unopened-explorer"
   },
   "scripts": {
     "deploy": "vsce publish"

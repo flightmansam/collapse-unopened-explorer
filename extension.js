@@ -1,38 +1,39 @@
-const { window, commands, workspace } = require('vscode');
+const vscode = require('vscode');
 
 const COLLAPSE = 'workbench.files.action.collapseExplorerFolders';
 const REVEAL = 'revealInExplorer';
 const FOCUS_EDITOR = 'workbench.action.focusActiveEditorGroup';
+const DEBUG = false;
 
 function activate(context) {
-  const subscription = window.onDidChangeActiveTextEditor(showOnlyOpenFiles);
-  context.subscriptions.push(subscription);
+  // const subscription = vscode.window.onDidChangeActiveTextEditor(showOnlyOpenFiles);
+  // context.subscriptions.push(subscription);
+  const command = 'collapse-unopened-explorer.collapseUnopened';
+
+  context.subscriptions.push(vscode.commands.registerCommand(command, collapseUnopened));
 }
 
-async function showOnlyOpenFiles(textEditor) {
+async function collapseUnopened() {
+  const textEditor = vscode.window.activeTextEditor;
   const fileExpectedInExplorer = textEditor?.document.uri.scheme === 'file';
   if (!fileExpectedInExplorer) return;
 
-  await commands.executeCommand(COLLAPSE);
+  await vscode.commands.executeCommand(COLLAPSE);
 
   //sort textDocuments such that textEditor.document is last
-  var docs = workspace.textDocuments.filter(doc => {return doc.fileName != textEditor.document.fileName});
-  console.log(docs);
-  console.log(textEditor.document.fileName);
-  docs = docs.concat(textEditor.document);
-  console.log(docs);
+  var docs = vscode.workspace.textDocuments.filter(doc => {return doc.fileName != textEditor.document.fileName}).concat(textEditor.document);
 
   for (var doc in docs) {
-    if (Object.hasOwnProperty.call(workspace.textDocuments, doc)) {
+    if (Object.hasOwnProperty.call(vscode.workspace.textDocuments, doc)) {
       doc = docs[doc];
 
-      console.log(doc.fileName);
+      if (DEBUG) console.log(doc.fileName);
 
-      await commands.executeCommand(REVEAL, doc.uri);
+      await vscode.commands.executeCommand(REVEAL, doc.uri);
     }
   }
 
-  await commands.executeCommand(FOCUS_EDITOR);
+  await vscode.commands.executeCommand(FOCUS_EDITOR);
 }
 
 function deactivate() {}

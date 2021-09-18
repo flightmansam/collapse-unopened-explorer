@@ -1,8 +1,8 @@
 {
-  "name": "auto-collapse-explorer",
-  "displayName": "Auto-Collapse Explorer",
+  "name": "auto-collapse-unopened-explorer",
+  "displayName": "Auto-Collapse Unopened Explorer",
   "description": "",
-  "version": "1.0.2",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.37.0"
   },
@@ -13,21 +13,12 @@
     "*"
   ],
   "main": "./extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "extension.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/LukeGeneva/vscode-auto-collapse-explorer"
+    "url": "https://github.com/flightmansam/vscode-auto-collapse-unopened-explorer"
   },
   "scripts": {
-    "deploy": "vsce publish",
-    "test": "node ./test/runTest.js"
+    "deploy": "vsce publish"
   },
   "devDependencies": {
     "@types/glob": "^7.1.1",
@@ -41,5 +32,5 @@
     "vsce": "^1.88.0",
     "vscode-test": "^1.0.2"
   },
-  "publisher": "lukegeneva"
+  "publisher": "flightmansam"
 }

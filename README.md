@@ -10,7 +10,7 @@ When commanded (Collapse Unopened Explorer Tabs), this extension will collapse a
 Thanks for trying out this extension! Hope you enjoy!
 
 ## Bugs
-- A VSCode session begins with vscode.workspace.textDocuments being an empty array until all tabs are cycled through and "opened" so this command will collapse all if you run it once opening a session (kinda annoying). I am waiting on a resolve to the vscode [github issue #15178](https://github.com/Microsoft/vscode/issues/15178) API Access to "Open Editors". *__Current fix__*: cycle tabs when you open your workspace. Or just get straight to work and keep in mind that your explorer view might be exceptionally tidy if you haven't played with many tabs.
+- A VSCode session begins with vscode.workspace.textDocuments being an empty array until all tabs are cycled through and "opened" so this command will collapse all if you run it once opening a session (kinda annoying). I am waiting on a resolve to the vscode [github issue #15178](https://github.com/Microsoft/vscode/issues/15178) API Access to "Open Editors". *__Current fix__*: on call of the extension command it will cycle through all of the tabs.
 
 ## Contributing
 
